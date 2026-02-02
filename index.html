@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Be My Valentine 💖</title>
+  <title>Kalyaa 💖</title>
 
   <style>
     body {
-      background: #ffd6e8;
+      background: #f3f3f3;
       font-family: Arial, sans-serif;
       display: flex;
       justify-content: center;
@@ -17,13 +17,12 @@
     }
 
     .card {
-      background: white;
+      background: #e6f4ee;
       padding: 40px;
-      border-radius: 20px;
+      border-radius: 18px;
       text-align: center;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
       position: relative;
-      z-index: 2;
     }
 
     h1 {
@@ -31,26 +30,26 @@
     }
 
     h2 {
-      margin-bottom: 30px;
+      margin-bottom: 25px;
       font-weight: normal;
     }
 
     button {
       padding: 12px 28px;
-      margin: 10px;
       border: none;
       border-radius: 20px;
       font-size: 16px;
       cursor: pointer;
+      margin: 10px;
     }
 
     .yes {
-      background: #ff4d88;
+      background: #ff5c8a;
       color: white;
     }
 
     .no {
-      background: #ddd;
+      background: #cccccc;
       position: absolute;
     }
   </style>
@@ -60,29 +59,26 @@
 
   <div class="card">
     <h1>Kalyaa ❤️</h1>
-    <h2>Will you Be my Valentine? 💘</h2>
+    <h2>Will you be my Valentine? 💘</h2>
 
     <button class="yes" onclick="sayYes()">Yes</button>
-    <button class="no" onmouseover="moveNo()">No</button>
+    <button class="no" id="noBtn">No</button>
   </div>
 
   <script>
-    function sayYes() {
-      alert("YAY!! 💖 I knew it 😍");
-    }
+    const noBtn = document.getElementById("noBtn");
 
-    function moveNo() {
-      const noBtn = document.querySelector(".no");
-
-      const maxX = window.innerWidth - noBtn.offsetWidth;
-      const maxY = window.innerHeight - noBtn.offsetHeight;
-
-      const x = Math.random() * maxX;
-      const y = Math.random() * maxY;
+    noBtn.addEventListener("mouseover", () => {
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
 
       noBtn.style.left = x + "px";
       noBtn.style.top = y + "px";
       noBtn.innerText = "Nice try 😏";
+    });
+
+    function sayYes() {
+      alert("YAY!! 💖 I knew it 😍");
     }
   </script>
 
