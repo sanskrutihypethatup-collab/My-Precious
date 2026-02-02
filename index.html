@@ -13,7 +13,6 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      overflow: hidden;
     }
 
     .card {
@@ -23,6 +22,8 @@
       text-align: center;
       box-shadow: 0 10px 25px rgba(0,0,0,0.15);
       position: relative;
+      width: 340px;
+      height: 220px;
     }
 
     h1 {
@@ -35,22 +36,25 @@
     }
 
     button {
-      padding: 12px 28px;
+      padding: 12px 26px;
       border: none;
       border-radius: 20px;
       font-size: 16px;
       cursor: pointer;
-      margin: 10px;
+      position: absolute;
     }
 
     .yes {
       background: #ff5c8a;
       color: white;
+      left: 40px;
+      bottom: 30px;
     }
 
     .no {
       background: #cccccc;
-      position: absolute;
+      right: 40px;
+      bottom: 30px;
     }
   </style>
 </head>
@@ -67,15 +71,32 @@
 
   <script>
     const noBtn = document.getElementById("noBtn");
+    const card = document.querySelector(".card");
 
-    noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    noBtn.addEventListener("mouseenter", moveAway);
 
-      noBtn.style.left = x + "px";
-      noBtn.style.top = y + "px";
-      noBtn.innerText = "Nice try 😏";
-    });
+    function moveAway() {
+      const currentX = noBtn.offsetLeft;
+      const currentY = noBtn.offsetTop;
+
+      const maxX = card.clientWidth - noBtn.offsetWidth - 20;
+      const maxY = card.clientHeight - noBtn.offsetHeight - 20;
+
+      // Movement distance (small dodge)
+      const moveDist = 60;  
+
+      let newX = currentX + (Math.random() * moveDist * 2 - moveDist);
+      let newY = currentY + (Math.random() * moveDist * 2 - moveDist);
+
+      // Keep inside card bounds
+      if (newX < 10) newX = 10;
+      if (newX > maxX) newX = maxX;
+      if (newY < 10) newY = 10;
+      if (newY > maxY) newY = maxY;
+
+      noBtn.style.left = newX + "px";
+      noBtn.style.top = newY + "px";
+    }
 
     function sayYes() {
       alert("YAY!! 💖 I knew it 😍");
